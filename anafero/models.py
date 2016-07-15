@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.sites.models import Site
 
 from anafero.conf import settings
@@ -28,7 +28,7 @@ class Referral(models.Model):
     redirect_to = models.CharField(max_length=512)
     target_content_type = models.ForeignKey(ContentType, null=True, blank=True)
     target_object_id = models.PositiveIntegerField(null=True, blank=True)
-    target = generic.GenericForeignKey(
+    target = GenericForeignKey(
         ct_field="target_content_type",
         fk_field="target_object_id"
     )
@@ -149,7 +149,7 @@ class ReferralResponse(models.Model):
 
     target_content_type = models.ForeignKey(ContentType, null=True)
     target_object_id = models.PositiveIntegerField(null=True)
-    target = generic.GenericForeignKey(
+    target = GenericForeignKey(
         ct_field="target_content_type",
         fk_field="target_object_id"
     )

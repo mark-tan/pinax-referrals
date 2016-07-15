@@ -27,7 +27,7 @@ setup(
     license="BSD",
     packages=find_packages(),
     install_requires=[
-        "django-appconf==0.5"
+        "django-appconf==1.0.2"
     ],
     tests_require=[
         "Django>=1.4",
